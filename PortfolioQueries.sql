@@ -1,3 +1,5 @@
+-- Basic understanding of the table
+
 SELECT location,date,population,total_cases,new_cases,total_deaths
 FROM CovidDeaths
 WHERE location is not null
@@ -5,27 +7,29 @@ order by 1,2
 
 --Total Cases vs Total Deaths to find death %
 
---SELECT location,date,total_cases,total_deaths,(Total_deaths/total_cases)*100 as DeathPercentage
---FROM CovidDeaths
---where location = 'India'
---order by 2
+SELECT location,date,total_cases,total_deaths,(Total_deaths/total_cases)*100 as DeathPercentage
+FROM CovidDeaths
+where location = 'India'
+order by 2
 
 -- Finding % of population got covid in a location
 
---SELECT location,date, population, total_cases, (total_cases/population)*100 as Covid_positive_percentage
---FROM CovidDeaths
---where location = 'India'
---order by 2
+SELECT location,date, population, total_cases, (total_cases/population)*100 as Covid_positive_percentage
+FROM CovidDeaths
+where location = 'India'
+order by 2
 
 --Countries with higher infection for their population
 
---SELECT location,population, max(total_cases) max_cases, (max(total_cases)/population)*100 as Covid_positive_percentage
---FROM CovidDeaths
---group by location,population
---order by 4 desc
+SELECT location,population, max(total_cases) max_cases, 
+(max(total_cases)/population)*100 as Covid_positive_percentage
+FROM CovidDeaths
+group by location,population
+order by 4 desc
 
 --countries with highest deaths for their population
-SELECT location,population, max(total_deaths) max_deaths, (max(total_deaths)/population)*100 as Covid_death_percentage_forPopulation
+SELECT location,population, max(total_deaths) max_deaths, 
+(max(total_deaths)/population)*100 as Covid_death_percentage_forPopulation
 FROM CovidDeaths
 WHERE continent is not null
 --where location like 'United%'
